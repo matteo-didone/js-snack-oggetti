@@ -1,51 +1,108 @@
-//Given an input field and two buttons, the user populates a list of ingredients using the first button. Upon pressing the second button, a random image of a meal is generated in the center of the screen after 2 seconds for each ingredient in the recipe.
+// Create an object that represents a basketball player with the following properties:
+//     Player code
+//     First name
+//     Last name
+//     Age
+//     Average points scored per game
+//     Three-point shooting percentage
+//     Blocks
+//     Shots
 
-// 1. Create a function that takes the value of the input field and returns it as a string.
-// 2. Create a function that, when executed, adds the value of the input field to the list of ingredients.
-// 3. Create a function that, when executed, generates a random image from an array of images. Each image should be displayed for 2 seconds before the next one is generated.
-
-
-// Create variables for the input field, the button and the list of ingredients.
-let input = document.getElementById("input");
-let inputValue = getInputValue(input);
-let addButton = document.getElementById("btn-add");
-let listOfIngredients = document.getElementById("list-of-ingredients");
-let imageArray = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg","image5.jpg"];  
-
-// Create a function that takes the value of the input field and returns it as a string.
-function getInputValue(input) 
+const basketballPlayer = 
 {
-    return input.value;
+    playerCode : "LBJ023",
+    playerName : "Lebron James",
+    age : 36,
+    avgPoints : 25,
+    threePointPercentage : 35,
+    blocks : 10,
+    shots : 50
+};
+
+// Create a function that returns the player code, first name, last name, and age of the player.
+function getPlayerInfo() 
+{
+    return `${basketballPlayer.playerCode} ${basketballPlayer.playerName} ${basketballPlayer.age}`;
 }
 
-// Create a function that, when executed, adds the value of the input field to the list of ingredients.
-function addIngredient() 
+// Create a function that returns the average points scored per game, three-point shooting percentage, blocks, and shots of the player.
+function getPlayerStats()
 {
-    // Get the current value of the input field
-    let inputValue = getInputValue(input);
+    return `${basketballPlayer.avgPoints} ${basketballPlayer.threePointPercentage} ${basketballPlayer.blocks} ${basketballPlayer.shots}`;
+}
 
-    // Check if the input field is empty.
-    if (inputValue !== "" || inputValue !== " ") 
+// Randomly generate game statistics according to the following rules:
+//     The player code must consist of 3 random uppercase letters and 3 random digits.
+//     The average points scored per game should be between 0 and 50.
+//     The three-point shooting percentage should be between 0 and 100.
+//     Blocks should be an integer between 0 and 30.
+//     Shots should be an integer between 20 and 100
+
+// Create a function that randomly generates a player code.
+function generateRandomPlayerCode()
+{
+    // Create a variable to store the player code.
+    let playerCode = "";
+    // Create a variable to store the alphabet.
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // Create a variable to store the numbers.
+    const numbers = "0123456789";
+
+    // Create a for loop to generate 3 random uppercase letters and 3 random digits.
+    for (let i = 0; i < 3; i++)
     {
-        // Create a list item and add the value of the input field to it.
-        let li = document.createElement("li");
-        // Add the text provided by the user to the list item.
-        li.innerText = inputValue;
-        // Add the list item to the list of ingredients.
-        listOfIngredients.appendChild(li);
-        // Clear the input field.
-        input.value = "";
+        playerCode += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
     }
+
+    // Create a for loop to generate 3 random uppercase letters and 3 random digits.
+    for (let i = 0; i < 3; i++)
+    {
+        playerCode += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    }
+
+    // Return the player code.
+    return playerCode;
 }
 
-
-// Create an event listener for the button that adds the value of the input field to the list of ingredients.
-addButton.addEventListener("click", addIngredient);
-//addIngriedient is not called, it's simply passed as a parameter to the event listener! That's the reason why it's not addIngredient().
-
-// Create a function that, when executed, generates a random image from an array of images. Each image should be displayed for 2 seconds before the next one is generated.
-function generateMealImage(ingredients) 
+// Create a function that randomly generates the average points scored per game.
+function generateRandomAvgPoints() 
 {
-    let imageArray = []; 
+    // Return a random number between 0 and 50 (inclusive).
+    return Math.floor(Math.random() * 50);
+}
 
+// Create a function that randomly generates the three-point shooting percentage.
+function generateRandomThreePointPercentage()
+{
+    // Return a random number between 0 and 100 (inclusive).
+    return Math.floor(Math.random() * 100);
+}
+
+// Create a function that randomly generates the blocks.
+function generateRandomBlocks() 
+{
+    // Return a random number between 0 and 30 (inclusive).
+    return Math.floor(Math.random() * 30);
+}
+
+// Create a function that randomly generates the shots.
+function generateRandomShots() 
+{
+    // Return a random number between 20 and 100 (inclusive).
+    return Math.floor(Math.random() * (100 - 20 + 1) + 20);
+}
+
+// Create a function that randomly generates the player statistics.
+function generateRandomPlayerStats()
+{
+    // Generate the player code.
+    basketballPlayer.playerCode = generateRandomPlayerCode();    
+    // Generate the average points scored per game.
+    basketballPlayer.avgPoints = generateRandomAvgPoints();
+    // Generate the three-point shooting percentage.
+    basketballPlayer.threePointPercentage = generateRandomThreePointPercentage();
+    // Generate the blocks.
+    basketballPlayer.blocks = generateRandomBlocks();
+    // Generate the shots.
+    basketballPlayer.shots = generateRandomShots();
 }
