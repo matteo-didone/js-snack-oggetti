@@ -11,7 +11,8 @@
 const basketballPlayer = 
 {
     playerCode : "LBJ023",
-    playerName : "Lebron James",
+    playerFirstName : "Lebron",
+    playerLastName : "James",
     age : 36,
     avgPoints : 25,
     threePointPercentage : 35,
@@ -22,7 +23,7 @@ const basketballPlayer =
 // Create a function that returns the player code, first name, last name, and age of the player.
 function getPlayerInfo() 
 {
-    return `${basketballPlayer.playerCode} ${basketballPlayer.playerName} ${basketballPlayer.age}`;
+    return `${basketballPlayer.playerCode} ${basketballPlayer.playerFirstName} ${basketballPlayer.playerLastName} ${basketballPlayer.age}`;
 }
 
 // Create a function that returns the average points scored per game, three-point shooting percentage, blocks, and shots of the player.
